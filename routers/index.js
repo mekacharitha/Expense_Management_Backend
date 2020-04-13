@@ -6,6 +6,8 @@ const signin = require('../controllers/loginControllers/signin');
 
 const addAccount = require('../controllers/accountsControllers/addAccount');
 const accountsByUserId = require('../controllers/accountsControllers/accountsByUserId');
+const accountBalanceByAccountName = require('../controllers/accountsControllers/accountBalanceByAccountName');
+const accountNameByAccountId = require('../controllers/accountsControllers/accountNameByaccountId')
 
 
 router.post('/signup', signup);
@@ -13,6 +15,7 @@ router.post('/signin' , signin);
 
 router.post('/addAccount' , addAccount);
 router.get('/accountsByUserId' , accountsByUserId);
-
+router.get('/accountBalanceByAccountName/:accountName' , accountBalanceByAccountName);
+router.get('/accountNameByAccountId' , accountNameByAccountId)
 
 module.exports = router;
