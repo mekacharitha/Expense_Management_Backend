@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     Transactions.belongsTo(models.Accounts,{foreignKey: 'accountId'});
     models.Accounts.hasMany(Transactions,{foreignKey: 'accountId'});
 
-
   };
   return Transactions;
 };
