@@ -1,15 +1,25 @@
 const models = require('../../models');
 
 const signUp = async (req, res, next) => {
+
     try {
-        const user = await models.Users.create(req.body)
-        res.status(201).json({
-            success: true,
-            user
+        const user = await models.Users.findOne({
+            where: {
+                userName: req.body.userName
+            }
         })
-        // res.status(200).send(
-        //     user
-        // );
+        if (!user) {
+            const user = await models.Users.create(req.body)
+            res.status(201).json({
+                success: true,
+                user
+            })
+        }
+        else {
+            res.status(400).json(
+                "username already exists"
+            );
+        }
     }
     catch (error) {
         res.status(400).json({
