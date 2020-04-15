@@ -13,21 +13,24 @@ const addTransaction = require('../controllers/transactionControllers/addTransac
 const editTransaction = require('../controllers/transactionControllers/editTransaction')
 const deleteTransaction = require('../controllers/transactionControllers/deleteTransaction');
 const transactionByAccountName = require('../controllers/transactionControllers/transactionByAccountName');
-const transactionByTransactionId = require('../controllers/transactionControllers/transactionByTransactionId')
+const transactionById = require('../controllers/transactionControllers/transactionByTransactionId')
+const transactionByUserId = require('../controllers/transactionControllers/transactionsByUserId');
+
 
 router.post('/signup', signup);
 router.post('/signin' , signin);
 
 router.post('/addAccount' , addAccount);
-router.get('/accountsByUserId' , accountsByUserId);
-router.get('/accountBalanceByAccountName/:accountName' , accountBalanceByAccountName);
-router.get('/accountNameByAccountId' , accountNameByAccountId)
+router.get('/accountsByUserId/:userId' , accountsByUserId);
+router.get('/accountBalanceByAccountName/:accountName/:userId' , accountBalanceByAccountName);
+router.get('/accountNameByAccountId/:userId/:id' , accountNameByAccountId)
 
 router.post('/addTransaction' , addTransaction);
 router.put('/editTransaction' , editTransaction);
-router.delete('/deleteTransaction' , deleteTransaction);
-router.get('/transactionByName' , transactionByAccountName);
-router.get('/transactionById' , transactionByTransactionId);
+router.delete('/deleteTransaction/:id' , deleteTransaction);
+router.get('/transactionByName/:accountName/:userId' , transactionByAccountName);
+router.get('/transactionById/:id' , transactionById);
+router.get('/transactions/:userId' , transactionByUserId);
 
 
 module.exports = router;

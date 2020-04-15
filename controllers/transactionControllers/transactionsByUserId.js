@@ -1,10 +1,10 @@
 const models = require('../../models')
 
-async function transactionById(req, res, next) {
+async function transactionByUserId(req, res, next) {
     try {
-        const transaction = await models.Transactions.findOne({
+        const transaction = await models.Transactions.findAll({
             where: {
-                id: req.params.id
+                userId: req.params.userId
             }
         })
         res.status(200).json({
@@ -20,4 +20,4 @@ async function transactionById(req, res, next) {
     }
 }
 
-module.exports = transactionById;
+module.exports = transactionByUserId;

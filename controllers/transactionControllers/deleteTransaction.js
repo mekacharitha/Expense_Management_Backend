@@ -5,7 +5,7 @@ async function deleteTransaction(req, res, next) {
     try {
         const transaction = await models.Transactions.findOne({
             where: {
-                id: req.body.id
+                id: req.params.id
             }
         })
         const account = await models.Accounts.findOne({
@@ -23,7 +23,7 @@ async function deleteTransaction(req, res, next) {
         }
         await models.Transactions.destroy({
             where:{
-                id:req.body.id
+                id:req.params.id
             }
         })
         res.status(200).json({

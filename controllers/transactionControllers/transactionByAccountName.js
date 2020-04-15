@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken')
 
 async function transactionsByAccountName(req, res, next) {
     try {
-        const token = req.headers['access-token']
-        const payload = jwt.decode(token)
+        // const token = req.headers['access-token']
+        // const payload = jwt.decode(token)
         const account = await models.Accounts.findOne({
             where: {
-                userId: payload.userId,
-                accountName:req.body.accountName
+                userId: req.params.userId,
+                accountName:req.params.accountName
             }
         })
         //console.log(account.id);
@@ -18,11 +18,15 @@ async function transactionsByAccountName(req, res, next) {
             }       
         })
         res.status(200).json({
+            success:true,
             transactions
         })
     }
     catch (err) {
-        next(err)
+        res.status(400).json({
+            success:false,
+            err
+        })
     }
 }
 module.exports = transactionsByAccountName;

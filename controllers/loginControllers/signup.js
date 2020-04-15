@@ -16,8 +16,11 @@ const signUp = async (req, res, next) => {
             })
         }
         else {
-            res.status(400).json(
-                "username already exists"
+            res.status(400).json({
+                success:false,
+                message:"username already exists"
+            }
+                
             );
         }
     }

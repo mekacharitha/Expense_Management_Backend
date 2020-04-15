@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken')
 
 const getAccountsByUserId = async (req, res, next) => {
     try {
-        const token = req.headers['access-token']
-        const payload = jwt.decode(token)
+        //const token = req.headers['access-token']
+       // const payload = jwt.decode(token)
         // const user = await models.User.findOne({
         //     where: {
         //         userName: payload.userName
@@ -12,16 +12,17 @@ const getAccountsByUserId = async (req, res, next) => {
         // })
         const accountsData = await models.Accounts.findAll({
             where: {
-                userId: payload.userId
+                userId: req.params.userId
             }
         })
         res.status(200).json({
+            success:true,
             accountsData
         })
     }
     catch (error) {
         res.status(400).json({
-            status: false,
+            success: false,
             error
         })
     }
