@@ -27,3 +27,5 @@ app.use((error, req, res, next) => {
         error,
     })
 });
+
+module.exports = app ;

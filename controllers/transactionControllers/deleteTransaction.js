@@ -27,11 +27,15 @@ async function deleteTransaction(req, res, next) {
             }
         })
         res.status(200).json({
+            success:true,
             transaction
         })
     }
     catch (err) {
-        next(err)
+        res.status(400).json({
+            success:false,
+            err
+        })
     }
 }
 module.exports = deleteTransaction;
