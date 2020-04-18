@@ -5,7 +5,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 describe("PUT /editTransaction", () => {
   it("editTransaction", done => {
-    chai
+     chai
       .request(app)
       .put("/editTransaction")
       .send({

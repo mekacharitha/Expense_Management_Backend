@@ -5,7 +5,7 @@ const addTransactionValidation = async (req, res, next) => {
     try {
         const addTransactionDataSchema = Joi.object({
             type: Joi.any().valid(['income', 'expense']).required(),
-            description: Joi.string().alphanum(),
+            description: Joi.any(),
             amount: Joi.number().min(0).positive(),
             accountName: Joi.string().alphanum().required(),
             date: Joi.date(),

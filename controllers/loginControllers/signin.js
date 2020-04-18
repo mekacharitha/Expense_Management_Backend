@@ -18,7 +18,7 @@ const login = async (req, res, next) => {
     user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
             var token = jwt.sign({ userName: req.body.userName , userId:user.id}, 'nodeauthsecret');
-            res.status(200).json({
+            res.status(201).json({
                  success: true, 
                  token: token,
                   user: user });
