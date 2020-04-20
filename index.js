@@ -22,7 +22,7 @@ app.listen(port, (error) => {
 })
 
 app.use((error, req, res, next) => {
-    res.json({
+    res.status(500).json({
         success: false,
         error,
     })

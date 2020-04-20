@@ -1,5 +1,4 @@
 const models = require('../../models');
-const jwt = require('jsonwebtoken');
 
 const addAccount = async (req, res, next) => {
     try {
@@ -35,10 +34,11 @@ const addAccount = async (req, res, next) => {
 
     }
     catch (error) {
-        res.status(400).json({
-            success: false,
-            error
-        })
+        // res.status(500).json({
+        //     success: false,
+        //     error
+        // })
+        next(error);
     }
 }
 module.exports = addAccount;

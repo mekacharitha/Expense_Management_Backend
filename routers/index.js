@@ -29,7 +29,7 @@ router.get('/accountBalanceByAccountName/:accountName/:userId' , accountBalanceB
 router.get('/accountNameByAccountId/:userId/:id' , accountNameByAccountId)
 
 router.post('/addTransaction' ,addTransactionValidation , addTransaction);
-router.put('/editTransaction' ,addTransactionValidation, editTransaction);
+router.put('/editTransaction' , editTransaction);
 router.delete('/deleteTransaction/:id' , deleteTransaction);
 router.get('/transactionByName/:accountName/:userId' , transactionByAccountName);
 router.get('/transactionById/:id' , transactionById);

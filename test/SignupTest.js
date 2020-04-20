@@ -4,27 +4,30 @@ const chaiHttp = require("chai-http");
 const { expect } = chai;
 chai.use(chaiHttp);
 describe("POST /signup", () => {
-  it("signup", done => {
-    chai
+  it("signup", async () => {
+    let response = await chai
       .request(app)
       .post("/signup")
       .send({
        "userName": "cherryMeka123",
         "password": "charitha123"
       })
-      .end((err, res) => {
-        console.log(res.body.success)
-        console.log(res.status);
-        console.log(err)
-        expect(res.body).be.a('object')
-        expect(res.body).to.have.property('success').that.is.a('boolean')
-        if (res.body.success == true) {
-          expect(res).to.have.status(201)
+      if (response.error == false) {
+        expect(response.body).be.a('object')
+        expect(response.body).to.have.property('success')
+        expect(response).to.have.status(201);
+        expect(response.body).to.have.property('success').to.equal(true)
+      }
+      else {
+        expect(response.body).be.a('object')
+        if (response.body.error == undefined) {
+          expect(response).to.have.status(400);
+          expect(response.body).to.have.property('success').to.equal(false)
         }
         else {
-          expect(res).to.have.status(409);
+          expect(response).to.have.status(500);
+          expect(response.body).to.have.property('success').to.equal(false)
         }
-        done();
-      });
+      }
+    });
   });
-});

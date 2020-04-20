@@ -3,29 +3,33 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const { expect } = chai;
 chai.use(chaiHttp);
+
 describe("POST /addAccount", () => {
-  it("addAccount", done => {
-    chai
-      .request(app)
+  it("addAccount", async () => {
+    const response = await chai.request(app)
       .post("/addAccount")
       .send({
        "accountName":"xyz",
         "accountBalance":100,
         "userId":3
       })
-      .end((err, res) => {
-        console.log(res.body.success)
-        console.log(res.status);
-        console.log(err)
-        expect(res.body).be.a('object')
-        expect(res.body).to.have.property('success').that.is.a('boolean')
-        if (res.body.success == true) {
-          expect(res).to.have.status(200)
+
+      if (response.error == false) {
+        expect(response.body).be.a('object')
+        expect(response.body).to.have.property('success')
+        expect(response).to.have.status(201);
+        expect(response.body).to.have.property('success').to.equal(true)
+    }
+    else {
+        expect(response.body).be.a('object')
+        if (response.body.error == undefined) {
+            expect(response).to.have.status(400);
+            expect(response.body).to.have.property('success').to.equal(false)
         }
         else {
-          expect(res).to.have.status(400);
+            expect(response).to.have.status(500);
+            expect(response.body).to.have.property('success').to.equal(false)
         }
-        done();
-      });
-  });
+    }
+});
 });

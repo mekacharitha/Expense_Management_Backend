@@ -28,16 +28,17 @@ async function addTransaction(req, res, next) {
             accountId: account.id
         }
         const transaction = await models.Transactions.create(transactionObj)
-        res.status(200).json({
+        res.status(201).json({
             success: true,
             transaction
         })
     }
     catch (err) {
-        res.status(400).json({
-            success: false,
-            error
-        })
+        // res.status(400).json({
+        //     success: false,
+        //     error
+        // })
+        next(err);
     }
 }
 module.exports = addTransaction;
