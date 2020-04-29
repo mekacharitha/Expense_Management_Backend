@@ -5,7 +5,6 @@ const models = require('../../models');
  * @param {object} res - Reponse object with a boolean variable success and account if success or error message if there is an error.
  * @param {function next(error) {   
 }} next - calls the error handling middleware.
-* @return {boolean} 
 */
 
 

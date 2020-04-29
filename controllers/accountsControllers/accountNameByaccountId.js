@@ -5,7 +5,6 @@ const models = require('../../models')
  * @param {object} res - Reponse object with a boolean variable success and required accounts name if success is true.
  * @param {function next(error) {   
 }} next - calls the error handling middleware.
-* @return {object} containing accounts name. 
 */
 
 const accountNameByAccountId = async (req, res, next) => {

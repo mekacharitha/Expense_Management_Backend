@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
  * @param {object} res - Reponse object with a boolean variable success and user , token if success or error message if there is an error.
  * @param {function next(error) {   
  }} next - calls the error handling middleware.
- * @return {boolean} 
  */
 
 const login = async (req, res, next) => {

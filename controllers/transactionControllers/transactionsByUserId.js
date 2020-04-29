@@ -5,7 +5,6 @@ const models = require('../../models');
  * @param {object} res - Reponse object with a boolean variable success and transactions if success is true.
  * @param {function next(error) {   
 }} next - calls the error handling middleware.
-* @return {object} transactions. 
 */
 
 async function transactionByUserId(req, res, next) {
@@ -25,5 +24,7 @@ async function transactionByUserId(req, res, next) {
         next(error);
     }
 }
+
+tr
 
 module.exports = transactionByUserId;

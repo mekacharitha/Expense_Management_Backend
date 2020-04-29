@@ -4,8 +4,7 @@ const models = require('../../models')
  * @param {object} req - Request object with userId.
  * @param {object} res - Reponse object with a boolean variable success and error message if success is false.
  * @param {function next(error) {   
-}} next - calls the error handling middleware.
-* @return {boolean}   
+}} next - calls the error handling middleware.  
 */
 
 async function addTransaction(req, res, next) {
