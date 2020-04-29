@@ -1,5 +1,13 @@
 const models = require('../../models')
 
+/** @description Deletes a transaction based on the transactionId.
+ * @param {object} req - Request object with transactionId.
+ * @param {object} res - Reponse object with a boolean variable success.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {boolean}  
+*/
+
 async function deleteTransaction(req, res, next) {
     try {
         const transaction = await models.Transactions.findOne({

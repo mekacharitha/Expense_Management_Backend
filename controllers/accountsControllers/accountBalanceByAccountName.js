@@ -1,5 +1,12 @@
 const models = require('../../models')
-var jwt = require('jsonwebtoken')
+
+/** @description Gets accounts balance based on the account name.
+ * @param {object} req - Request object with account name and userId.
+ * @param {object} res - Reponse object with a boolean variable success and balance if success is true.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {object} with balance  
+*/
 
 const getAccountBalanceByAccountName = async (req, res, next) => {
     try {

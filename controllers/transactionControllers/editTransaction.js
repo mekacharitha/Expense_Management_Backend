@@ -1,5 +1,13 @@
 const models = require('../../models')
 
+/** @description Edits a transaction.
+ * @param {object} req - Request object with transactionId and userId.
+ * @param {object} res - Reponse object with a boolean variable success.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {boolean}  
+*/
+
 async function editTransaction(req, res, next) {
     try {
        

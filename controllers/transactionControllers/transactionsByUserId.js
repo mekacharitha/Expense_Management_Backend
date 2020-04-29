@@ -1,4 +1,12 @@
-const models = require('../../models')
+const models = require('../../models');
+
+/** @description Gets transactions based on the userId.
+ * @param {object} req - Request object with userId.
+ * @param {object} res - Reponse object with a boolean variable success and transactions if success is true.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {object} transactions. 
+*/
 
 async function transactionByUserId(req, res, next) {
     try {

@@ -1,18 +1,17 @@
 const models = require('../../models');
 
+/** @description Adds a new account with accountName and startingBalance.
+ * @param {object} req - Request object with accountName and startingBalance.
+ * @param {object} res - Reponse object with a boolean variable success and account if success or error message if there is an error.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {boolean} 
+*/
+
+
 const addAccount = async (req, res, next) => {
     try {
-        // const token = req.headers['access-token']
-        // const payload = jwt.decode(token)
-        // const user = await models.Users.findOne({
-        //     where: {
-        //         userName: payload.userName
-        //     }
-        // })
-        // const accountDetails = { 
-        //     ...req.body, 
-        //     userId: user.id
-        // }
+        
         const account = await models.Accounts.findOne({
             where: {
                 accountName: req.body.accountName

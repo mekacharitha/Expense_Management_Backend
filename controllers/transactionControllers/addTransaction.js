@@ -1,5 +1,12 @@
 const models = require('../../models')
-const jwt = require('jsonwebtoken')
+
+/** @description Adds transaction with details of the transaction.
+ * @param {object} req - Request object with userId.
+ * @param {object} res - Reponse object with a boolean variable success and error message if success is false.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {boolean}   
+*/
 
 async function addTransaction(req, res, next) {
     try {

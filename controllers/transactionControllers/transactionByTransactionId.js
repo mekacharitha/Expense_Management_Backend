@@ -1,5 +1,13 @@
 const models = require('../../models')
 
+/** @description Gets transaction based on id.
+ * @param {object} req - Request object with transaction id.
+ * @param {object} res - Reponse object with a boolean variable success and transaction if success is true.
+ * @param {function next(error) {   
+}} next - calls the error handling middleware.
+* @return {object} object with transaction. 
+*/
+
 async function transactionById(req, res, next) {
     try {
         const transaction = await models.Transactions.findOne({
