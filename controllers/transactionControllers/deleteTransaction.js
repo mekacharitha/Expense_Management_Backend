@@ -1,5 +1,4 @@
 const models = require('../../models')
-//const jwt = require('jsonwebtoken')
 
 async function deleteTransaction(req, res, next) {
     try {
@@ -32,10 +31,7 @@ async function deleteTransaction(req, res, next) {
         })
     }
     catch (err) {
-        // res.status(400).json({
-        //     success:false,
-        //     err
-        // })
+        
         next(err);
     }
 }

@@ -20,7 +20,7 @@ const addAccount = async (req, res, next) => {
         })
         if (!account) {
             const account = await models.Accounts.create(req.body)
-            res.status(200).json({
+            res.status(201).json({
                 success: true,
                 account
             })
@@ -34,10 +34,6 @@ const addAccount = async (req, res, next) => {
 
     }
     catch (error) {
-        // res.status(500).json({
-        //     success: false,
-        //     error
-        // })
         next(error);
     }
 }

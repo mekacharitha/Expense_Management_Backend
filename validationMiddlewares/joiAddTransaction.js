@@ -26,8 +26,7 @@ const addTransactionValidation = async (req, res, next) => {
     catch (error) {
         res.status(400).json({
             success: false,
-            message: "Invalid transaction data",
-            error
+            message:  error.details[0].message
         })
     }
 }

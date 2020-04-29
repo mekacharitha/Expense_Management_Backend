@@ -3,9 +3,7 @@ var jwt = require('jsonwebtoken')
 
 const getAccountBalanceByAccountName = async (req, res, next) => {
     try {
-        // const token = req.headers['access-token']
-        // const payload = jwt.decode(token)
-
+       
         const accountsData = await models.Accounts.findAll({
             where: {
                 accountName: req.params.accountName,
@@ -22,10 +20,7 @@ const getAccountBalanceByAccountName = async (req, res, next) => {
         })     
     }
     catch (error) {
-        // res.status(400).json({
-        //     success: false,
-        //     error
-        // })
+       
         next(error);
     }
 }

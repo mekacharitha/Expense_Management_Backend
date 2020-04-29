@@ -16,8 +16,7 @@ const addAccountValidation = async (req, res, next) => {
     catch (error) {
         res.status(400).json({
             success: false,
-            message: "Invalid accounts data",
-            error
+            message:  error.details[0].message
         })
     }
 }

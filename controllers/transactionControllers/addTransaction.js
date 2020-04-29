@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken')
 
 async function addTransaction(req, res, next) {
     try {
-        // const token = req.headers['access-token']
-        // const payload = jwt.decode(token)
+        
         const account = await models.Accounts.findOne({
             where: {
                 userId: req.body.userId,
@@ -34,10 +33,6 @@ async function addTransaction(req, res, next) {
         })
     }
     catch (err) {
-        // res.status(400).json({
-        //     success: false,
-        //     error
-        // })
         next(err);
     }
 }

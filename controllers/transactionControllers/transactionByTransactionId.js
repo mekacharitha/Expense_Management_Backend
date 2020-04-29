@@ -13,10 +13,6 @@ async function transactionById(req, res, next) {
         })
     }
     catch (err) {
-        // res.status(400).json({
-        //     success:false,
-        //     err
-        // })
         next(error);
     }
 }
