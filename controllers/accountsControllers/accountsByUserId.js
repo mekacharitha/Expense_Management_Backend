@@ -1,10 +1,14 @@
 const models = require('../../models')
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Gets accounts details based on the userId.
  * @param {object} req - Request object with userId.
  * @param {object} res - Reponse object with a boolean variable success and required accounts if success is true.
- * @param {function next(error) {   
-}} next - calls the error handling middleware.
+ * @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}
 */
 
 const getAccountsByUserId = async (req, res, next) => {

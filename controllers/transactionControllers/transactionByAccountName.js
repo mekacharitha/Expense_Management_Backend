@@ -1,10 +1,14 @@
 const models = require('../../models');
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Gets transactions based on the accounts name.
  * @param {object} req - Request object with userId and accountName.
  * @param {object} res - Reponse object with a boolean variable success and transactions if success is true.
- * @param {function next(error) {   
-}} next - calls the error handling middleware.
+* @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}
 */
 
 async function transactionsByAccountName(req, res, next) {

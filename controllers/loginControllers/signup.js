@@ -1,10 +1,14 @@
 const models = require('../../models');
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Signups a new user with username and password.
  * @param {object} req - Request object containing username and password.
  * @param {object} res - Reponse object with a boolean variable success and user if success or error message if there is an error.
- * @param {function next(error) {   
-}} next - calls the error handling middleware. 
+ ** @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise} 
 */
 
 const signUp = async (req, res, next) => {

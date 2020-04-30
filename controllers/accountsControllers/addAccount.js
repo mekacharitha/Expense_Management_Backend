@@ -1,10 +1,15 @@
 const models = require('../../models');
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
+
 /** @description Adds a new account with accountName and startingBalance.
  * @param {object} req - Request object with accountName and startingBalance.
  * @param {object} res - Reponse object with a boolean variable success and account if success or error message if there is an error.
- * @param {function next(error) {   
-}} next - calls the error handling middleware.
+ * @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}
 */
 
 

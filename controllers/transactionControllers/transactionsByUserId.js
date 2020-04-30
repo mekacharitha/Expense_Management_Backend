@@ -1,10 +1,14 @@
 const models = require('../../models');
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Gets transactions based on the userId.
  * @param {object} req - Request object with userId.
  * @param {object} res - Reponse object with a boolean variable success and transactions if success is true.
- * @param {function next(error) {   
-}} next - calls the error handling middleware.
+* @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}
 */
 
 async function transactionByUserId(req, res, next) {
@@ -20,11 +24,10 @@ async function transactionByUserId(req, res, next) {
         })
     }
     catch (err) {
-        
+
         next(error);
     }
 }
 
-tr
 
 module.exports = transactionByUserId;

@@ -1,10 +1,14 @@
 const models = require('../../models')
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Deletes a transaction based on the transactionId.
  * @param {object} req - Request object with transactionId.
  * @param {object} res - Reponse object with a boolean variable success.
- * @param {function next(error) {   
-}} next - calls the error handling middleware. 
+ * @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}
 */
 
 async function deleteTransaction(req, res, next) {

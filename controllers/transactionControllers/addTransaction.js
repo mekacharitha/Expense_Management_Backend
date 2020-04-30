@@ -1,10 +1,14 @@
 const models = require('../../models')
 
+/**
+ * @callback requestCallback
+ * @param {object} errorObject
+ */
 /** @description Adds transaction with details of the transaction.
  * @param {object} req - Request object with userId.
  * @param {object} res - Reponse object with a boolean variable success and error message if success is false.
- * @param {function next(error) {   
-}} next - calls the error handling middleware.  
+ * @param {requestCallback} next - The callback that calls the error handling middleware.
+ * @returns {Promise}  
 */
 
 async function addTransaction(req, res, next) {
