@@ -42,7 +42,7 @@ const signUp = async (req, res, next) => {
     }
     catch (error) {
         logger.error(req.url);
-        logger.error(err.name);
+        logger.error(error.name);
         next(error);
     }
 }

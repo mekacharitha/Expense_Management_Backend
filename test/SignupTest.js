@@ -9,25 +9,26 @@ describe("POST /signup", () => {
       .request(app)
       .post("/signup")
       .send({
-       "userName": "cherryMeka123",
-        "password": "charitha123"
+       "userName": "meka@gmail.com",
+        "password": "meka@123"
       })
-      if (response.error == false) {
-        expect(response.body).be.a('object')
-        expect(response.body).to.have.property('success')
-        expect(response).to.have.status(201);
-        expect(response.body).to.have.property('success').to.equal(true)
-      }
-      else {
-        expect(response.body).be.a('object')
-        if (response.body.error == undefined) {
-          expect(response).to.have.status(400);
-          expect(response.body).to.have.property('success').to.equal(false)
-        }
-        else {
-          expect(response).to.have.status(500);
-          expect(response.body).to.have.property('success').to.equal(false)
-        }
-      }
-    });
+      expect(response).to.have.status(201);
+      expect(response.body).to.have.property('success').to.equal(true)
   });
+  it("it should throw an error if User already exist", async () => {
+    const response = await chai.request(app).post("/signup").send({
+      "userName": "meka@gmail.com",
+      "password": "meka@123"
+    })
+      expect(response).to.have.status(400);
+      expect(response.body).to.have.property('success').to.equal(false)
+  });
+  it("it should throw an error if username is invalid", async () => {
+    const response = await chai.request(app).post("/signup").send({
+      "userName": undefined,
+      "password": "meka@123"
+    })
+      expect(response).to.have.status(400);
+      expect(response.body).to.have.property('success').to.equal(false)
+  });
+});

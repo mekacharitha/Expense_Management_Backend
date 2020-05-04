@@ -1,5 +1,5 @@
 const models = require('../../models')
-
+const logger = require('../../log')
 /**
  * @callback requestCallback
  * @param {object} errorObject
@@ -32,7 +32,7 @@ const getAccountBalanceByAccountName = async (req, res, next) => {
     }
     catch (error) {
         logger.error(req.url)
-        logger.error(err.name)
+        logger.error(error.name)
         next(error);
     }
 }

@@ -7,10 +7,13 @@ const addAccountValidation = async (req, res, next) => {
         const addAccountDataSchema = Joi.object({
             accountName: Joi.string().alphanum().required(),
             accountBalance: Joi.number().min(0).positive(),
-            userId:Joi.number().min(1).positive(),
+            // userId:Joi.number().min(1).positive(),
         })
 
-        const value = await addAccountDataSchema.validate({ accountName: req.body.accountName, accountBalance: req.body.accountBalance , userId:req.body.userId});
+        const value = await addAccountDataSchema.validate({ accountName: req.body.accountName,
+             accountBalance: req.body.accountBalance ,
+            //   userId:req.body.userId
+        });
         next();
 
     }

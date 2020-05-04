@@ -6,11 +6,11 @@ const addTransactionValidation = async (req, res, next) => {
     try {
         const addTransactionDataSchema = Joi.object({
             type: Joi.any().valid(['income', 'expense']).required(),
-            description: Joi.any(),
-            amount: Joi.number().min(0).positive(),
+            description: Joi.any().required(),
+            amount: Joi.number().positive().required(),
             accountName: Joi.string().alphanum().required(),
-            date: Joi.date(),
-            userId: Joi.number().min(1),
+            date: Joi.date().required(),
+            // userId: Joi.number().min(1).required(),
         })
 
         const value = await addTransactionDataSchema.validate({
@@ -19,7 +19,7 @@ const addTransactionValidation = async (req, res, next) => {
             amount: req.body.amount,
             accountName: req.body.accountName,
             date: req.body.date,
-            userId: req.body.userId
+            // userId: req.body.userId
         });
         next();
 

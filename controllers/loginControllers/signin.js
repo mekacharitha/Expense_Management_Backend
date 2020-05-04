@@ -23,12 +23,13 @@ const login = async (req, res, next) => {
             }
         })
         if (!user) {
+            logger.error(req.url)
+            logger.error("signin.request.failed.as.username.incorrect")
             return res.status(401).json({
                 success: false,
                 message: 'Authentication failed.',
             });
-            logger.error(req.url)
-            logger.error("signin.request.failed.as.username.incorrect")
+            
         }
 
         user.comparePassword(req.body.password, (err, isMatch) => {
@@ -52,7 +53,7 @@ const login = async (req, res, next) => {
     }
     catch (error) {
         logger.error(req.url)
-        logger.error(err.name)
+        logger.error(error.name)
         next(error);
     }
 }

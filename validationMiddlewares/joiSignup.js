@@ -6,7 +6,7 @@ const signUpValidation = async (req, res, next) => {
     try {
         const signupDataSchema = Joi.object({
             userName: Joi.string().email().required(),
-            password: Joi.string().alphanum().min(5).max(30).required(),
+            password: Joi.string().min(3).max(30).required(),
         })
 
         await signupDataSchema.validate({ userName: req.body.userName, password: req.body.password });

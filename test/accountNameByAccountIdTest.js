@@ -8,15 +8,17 @@ describe("GET /accountNameByAccountId", () => {
    let response = await chai
       .request(app)
       .get("/accountNameByAccountId/"+7+"/"+23)
-      if (response.error == false) {
-        expect(response).to.have.status(200)
-        expect(response.body).be.a('object')
-        expect(response.body).to.have.property('success').to.equal(true)
-        expect(response.body).to.have.property('accountName')
-    }
-    else {
-        expect(response).to.have.status(500);
-        expect(response.body).to.have.property('success').to.equal(false)
-    }
+      expect(response).to.have.status(200)
+      expect(response.body).to.have.property('success').to.equal(true)
+      expect(response.body).to.have.property('accountName')
+  });
+  it("it should throw an error if accountid is invalid", async () => {
+      const response = await chai
+        .request(app)
+        .get("/accountNameByAccountId/"+7+"/"+undefined)
+      expect(response).to.have.status(500);
+      expect(response.body).to.have.property('success').to.equal(false)
+
+  });
 });
-});
+

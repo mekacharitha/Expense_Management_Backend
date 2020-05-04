@@ -35,7 +35,7 @@ async function transactionsByAccountName(req, res, next) {
     catch (err) {
         logger.error(req.url)
         logger.error(err.name)
-        next(error);
+        next(err);
     }
 }
 module.exports = transactionsByAccountName;
