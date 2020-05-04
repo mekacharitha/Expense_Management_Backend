@@ -1,4 +1,5 @@
 const models = require('../../models')
+const logger=require('../../log');
 
 /**
  * @callback requestCallback
@@ -40,9 +41,11 @@ async function deleteTransaction(req, res, next) {
             success:true,
             transaction
         })
+        logger.info("deleteTransaction.successful")
     }
     catch (err) {
-        
+        logger.error(req.url)
+        logger.error(err.name)
         next(err);
     }
 }

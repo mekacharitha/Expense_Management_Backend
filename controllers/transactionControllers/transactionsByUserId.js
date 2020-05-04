@@ -1,4 +1,5 @@
 const models = require('../../models');
+const logger=require('../../log');
 
 /**
  * @callback requestCallback
@@ -13,6 +14,7 @@ const models = require('../../models');
 
 async function transactionByUserId(req, res, next) {
     try {
+        logger.info(req.url);
         const transaction = await models.Transactions.findAll({
             where: {
                 userId: req.params.userId
@@ -22,9 +24,11 @@ async function transactionByUserId(req, res, next) {
             success:true,
             transaction
         })
+        logger.info("getTransactionsByUserId.successful")
     }
     catch (err) {
-
+        logger.error(req.url)
+        logger.error(err.name)
         next(error);
     }
 }

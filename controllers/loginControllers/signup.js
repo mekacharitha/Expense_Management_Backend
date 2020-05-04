@@ -1,4 +1,5 @@
 const models = require('../../models');
+const logger=require('../../log');
 
 /**
  * @callback requestCallback
@@ -14,7 +15,7 @@ const models = require('../../models');
 const signUp = async (req, res, next) => {
 
     try {
-
+        logger.info(req.url);
         const user = await models.Users.findOne({
             where: {
                 userName: req.body.userName
@@ -27,7 +28,7 @@ const signUp = async (req, res, next) => {
                 success: true,
                 user
             })
-
+            logger.info("signup.successful")
         }
         else {
             res.status(400).json({
@@ -36,9 +37,12 @@ const signUp = async (req, res, next) => {
             }
 
             );
+            logger.warn("signup.request.failed.as.user.already.exist")
         }
     }
     catch (error) {
+        logger.error(req.url);
+        logger.error(err.name);
         next(error);
     }
 }

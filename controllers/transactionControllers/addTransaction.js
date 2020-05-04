@@ -1,4 +1,5 @@
-const models = require('../../models')
+const models = require('../../models');
+const logger=require('../../log');
 
 /**
  * @callback requestCallback
@@ -13,7 +14,7 @@ const models = require('../../models')
 
 async function addTransaction(req, res, next) {
     try {
-        
+        logger.info(req.url)
         const account = await models.Accounts.findOne({
             where: {
                 userId: req.body.userId,
@@ -41,8 +42,11 @@ async function addTransaction(req, res, next) {
             success: true,
             transaction
         })
+        logger.info("addTransaction.successful");
     }
     catch (err) {
+        logger.error(req.url)
+        logger.error(err.name)
         next(err);
     }
 }

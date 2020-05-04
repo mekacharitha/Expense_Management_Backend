@@ -20,7 +20,7 @@ const transactionByUserId = require('../controllers/transactionControllers/trans
 const addTransactionValidation = require('../validationMiddlewares/joiAddTransaction');
 
 
-router.post('/signup', signup);
+router.post('/signup', signupValidation,signup);
 router.post('/signin' , signin);
 
 router.post('/addAccount' , addAccountValidation, addAccount);
@@ -34,7 +34,6 @@ router.delete('/deleteTransaction/:id' , deleteTransaction);
 router.get('/transactionByName/:accountName/:userId' , transactionByAccountName);
 router.get('/transactionById/:id' , transactionById);
 router.get('/transactions/:userId' , transactionByUserId);
-
 
 
 module.exports = router;

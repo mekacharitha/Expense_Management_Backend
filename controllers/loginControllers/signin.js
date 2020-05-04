@@ -1,5 +1,6 @@
 const models = require('../../models');
 const jwt = require('jsonwebtoken');
+const logger = require('../../log');
 
 /**
  * @callback requestCallback
@@ -15,6 +16,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res, next) => {
 
     try {
+        logger.info(req.url);
         const user = await models.Users.findOne({
             where: {
                 userName: req.body.userName,
@@ -25,6 +27,8 @@ const login = async (req, res, next) => {
                 success: false,
                 message: 'Authentication failed.',
             });
+            logger.error(req.url)
+            logger.error("signin.request.failed.as.username.incorrect")
         }
 
         user.comparePassword(req.body.password, (err, isMatch) => {
@@ -35,15 +39,20 @@ const login = async (req, res, next) => {
                     token: token,
                     user: user
                 });
+                logger.info("signin.request.successful")
             } else {
                 res.status(401).send({
                     success: false,
                     message: 'Authentication failed.'
                 });
+                logger.error(req.url)
+                logger.error("signin.request.failed.as.username.or.password.incorrect")
             }
         })
     }
     catch (error) {
+        logger.error(req.url)
+        logger.error(err.name)
         next(error);
     }
 }

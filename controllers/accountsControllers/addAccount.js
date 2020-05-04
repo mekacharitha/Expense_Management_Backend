@@ -1,4 +1,5 @@
 const models = require('../../models');
+const logger = require('../../log');
 
 /**
  * @callback requestCallback
@@ -15,20 +16,25 @@ const models = require('../../models');
 
 const addAccount = async (req, res, next) => {
     try {
-        
+        logger.info(req.url);
         const account = await models.Accounts.findOne({
             where: {
-                accountName: req.body.accountName
+                accountName: req.body.accountName,
+                userId:req.body.userId
+
             }
         })
+
         if (!account) {
             const account = await models.Accounts.create(req.body)
             res.status(201).json({
                 success: true,
                 account
             })
+            logger.info("addAccount.successful")
         }
         else{
+            logger.error("addAccount.failed.as.accountName.already.exist")
             res.status(400).json({
                 success: false,
                 message:"Account name already exists"
@@ -37,6 +43,8 @@ const addAccount = async (req, res, next) => {
 
     }
     catch (error) {
+        logger.error(req.url)
+        logger.error(err.name)
         next(error);
     }
 }

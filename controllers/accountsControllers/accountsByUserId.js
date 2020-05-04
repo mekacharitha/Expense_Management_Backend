@@ -1,4 +1,5 @@
 const models = require('../../models')
+const logger=require('../../log');
 
 /**
  * @callback requestCallback
@@ -13,7 +14,7 @@ const models = require('../../models')
 
 const getAccountsByUserId = async (req, res, next) => {
     try {
-        
+        logger.info(req.url)
         const accountsData = await models.Accounts.findAll({
             where: {
                 userId: req.params.userId
@@ -23,9 +24,13 @@ const getAccountsByUserId = async (req, res, next) => {
             success:true,
             accountsData
         })
+        logger.info("getAccountsByUserId.successful")
     }
     catch (error) {
+        logger.error(req.url)
+        logger.error(err.name)
         next(error);
     }
 }
+
 module.exports = getAccountsByUserId ;

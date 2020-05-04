@@ -13,7 +13,7 @@ const models = require('../../models')
 
 const getAccountBalanceByAccountName = async (req, res, next) => {
     try {
-       
+        logger.info(req.url)
         const accountsData = await models.Accounts.findAll({
             where: {
                 accountName: req.params.accountName,
@@ -27,10 +27,12 @@ const getAccountBalanceByAccountName = async (req, res, next) => {
         res.status(200).json({
            success:true,
             balance
-        })     
+        })  
+        logger.info("getAccountBalanceByAccountName.successful")   
     }
     catch (error) {
-       
+        logger.error(req.url)
+        logger.error(err.name)
         next(error);
     }
 }
