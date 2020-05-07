@@ -1,15 +1,17 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 
 const app = express(); // initialize an app
 const routes = require('./routers');
 
 app.use(cors())
 app.use(bodyParser.json()); // parse json
-
-const port = 8000;
-
+console.log(process.env.PORT);
+const port = process.env.PORT ;
+// const port = 8000;
 
 app.use('/', routes);
 
