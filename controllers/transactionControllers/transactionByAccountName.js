@@ -1,5 +1,6 @@
 const models = require('../../models');
 const logger=require('../../log');
+const {decodeToken} = require('../../util/util');
 
 /**
  * @callback requestCallback
@@ -14,10 +15,11 @@ const logger=require('../../log');
 
 async function transactionsByAccountName(req, res, next) {
     try {
-        logger.info(req.url)
+        logger.info(req.url);
+        const payload = decodeToken(req.headers.token)
         const account = await models.Accounts.findOne({
             where: {
-                userId: req.params.userId,
+                userId: payload.userId,
                 accountName:req.params.accountName
             }
         })

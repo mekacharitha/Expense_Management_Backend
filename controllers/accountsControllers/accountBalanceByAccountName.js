@@ -1,5 +1,6 @@
 const models = require('../../models')
 const logger = require('../../log')
+const {decodeToken} = require('../../util/util');
 /**
  * @callback requestCallback
  * @param {object} errorObject
@@ -14,10 +15,11 @@ const logger = require('../../log')
 const getAccountBalanceByAccountName = async (req, res, next) => {
     try {
         logger.info(req.url)
+        const payload= decodeToken(req.headers.token)
         const accountsData = await models.Accounts.findAll({
             where: {
                 accountName: req.params.accountName,
-                userId:req.params.userId
+                userId:payload.userId
             }
         })
 

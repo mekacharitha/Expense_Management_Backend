@@ -19,21 +19,25 @@ const transactionById = require('../controllers/transactionControllers/transacti
 const transactionByUserId = require('../controllers/transactionControllers/transactionsByUserId');
 const addTransactionValidation = require('../validationMiddlewares/joiAddTransaction');
 
+const transacByAccName = require('../controllers/transactionControllers/transcByAccName');
+
 
 router.post('/signup', signupValidation,signup);
 router.post('/signin' , signin);
 
 router.post('/addAccount' , addAccountValidation, addAccount);
-router.get('/accountsByUserId/:userId' , accountsByUserId);
-router.get('/accountBalanceByAccountName/:accountName/:userId' , accountBalanceByAccountName);
-router.get('/accountNameByAccountId/:userId/:id' , accountNameByAccountId)
+router.get('/accountsByUserId' , accountsByUserId);
+router.get('/accountBalanceByAccountName/:accountName' , accountBalanceByAccountName);
+router.get('/accountNameByAccountId/:id' , accountNameByAccountId)
 
 router.post('/addTransaction' ,addTransactionValidation , addTransaction);
 router.put('/editTransaction' , editTransaction);
 router.delete('/deleteTransaction/:id' , deleteTransaction);
-router.get('/transactionByName/:accountName/:userId' , transactionByAccountName);
+router.get('/transactionByName/:accountName' , transactionByAccountName);
 router.get('/transactionById/:id' , transactionById);
-router.get('/transactions/:userId' , transactionByUserId);
+router.get('/transactions' , transactionByUserId);
+
+router.get('/transacByName/:accountName/:userId' , transacByAccName);
 
 
 module.exports = router;

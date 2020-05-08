@@ -1,5 +1,6 @@
 const models = require('../../models');
 const logger=require('../../log');
+const {decodeToken} = require('../../util/util')
 
 /**
  * @callback requestCallback
@@ -15,9 +16,10 @@ const logger=require('../../log');
 async function addTransaction(req, res, next) {
     try {
         logger.info(req.url)
+        const payload = decodeToken(req.body.token)
         const account = await models.Accounts.findOne({
             where: {
-                userId: req.body.userId,
+                userId: payload.userId,
                 accountName: req.body.accountName
             }
         })
@@ -34,7 +36,7 @@ async function addTransaction(req, res, next) {
             description: req.body.description,
             amount: req.body.amount,
             date: req.body.date,
-            userId: req.body.userId,
+            userId:payload.userId,
             accountId: account.id
         }
         const transaction = await models.Transactions.create(transactionObj)

@@ -1,5 +1,6 @@
 const models = require('../../models')
 const logger=require('../../log');
+const {decodeToken} = require('../../util/util');
 
 /**
  * @callback requestCallback
@@ -15,9 +16,10 @@ const logger=require('../../log');
 const getAccountsByUserId = async (req, res, next) => {
     try {
         logger.info(req.url)
+        const payload = decodeToken(req.headers.token)
         const accountsData = await models.Accounts.findAll({
             where: {
-                userId: req.params.userId
+                userId: payload.userId
             }
         })
         res.status(200).json({

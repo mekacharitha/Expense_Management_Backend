@@ -1,6 +1,6 @@
 const models = require('../../models');
 const logger=require('../../log');
-
+const {decodeToken} = require('../../util/util');
 /**
  * @callback requestCallback
  * @param {object} errorObject
@@ -15,9 +15,11 @@ const logger=require('../../log');
 async function transactionByUserId(req, res, next) {
     try {
         logger.info(req.url);
+        const payload = decodeToken(req.headers.token)
+        // console.log(payload);
         const transaction = await models.Transactions.findAll({
             where: {
-                userId: req.params.userId
+                userId: payload.userId
             }
         })
         res.status(200).json({

@@ -1,6 +1,6 @@
 const models = require('../../models');
 const logger = require('../../log');
-
+const {decodeToken} = require('../../util/util');
 /**
  * @callback requestCallback
  * @param {object} errorObject
@@ -13,20 +13,24 @@ const logger = require('../../log');
  * @returns {Promise}
 */
 
-
 const addAccount = async (req, res, next) => {
     try {
         logger.info(req.url);
+        const payload = decodeToken(req.body.token)
+        console.log(payload);
         const account = await models.Accounts.findOne({
             where: {
                 accountName: req.body.accountName,
-                userId:req.body.userId
-
+                userId:payload.userId
             }
         })
 
         if (!account) {
-            const account = await models.Accounts.create(req.body)
+            console.log(req.body)
+            const account = await models.Accounts.create({
+                accountName:req.body.accountName ,
+                accountBalance:req.body.accountBalance, 
+                userId:payload.userId})
             res.status(201).json({
                 success: true,
                 account
